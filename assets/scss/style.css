@@ -8,14 +8,9 @@ h1 {
 }
 
 canvas {
-  background: cornsilk;
   padding: 0;
   margin: 0 auto;
   margin-bottom: 1rem;
   display: block;
-}
-
-img {
-  display: none;
 }
 /*# sourceMappingURL=style.css.map */
