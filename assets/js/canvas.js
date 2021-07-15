@@ -1,21 +1,3 @@
-/*window.onload = function(){
-    let canvas = document.getElementById("gameCanvas");
-    let ctx = canvas.getContext("2d");
-
-    
-
-    let imgGun = document.getElementById("gun");
-    ctx.drawImage(imgGun,10,840,250,200);
-    
-
-    let imgBullet = document.getElementById("bullet");
-    ctx.drawImage(imgBullet,250,400,150,100);
-
-    let imgTarget = document.getElementById("target");
-    ctx.drawImage(imgTarget,500,10,150,100);
-
-}*/ 
-
 let canvas,ctx;
 
 window.onload = function(){
@@ -24,6 +6,7 @@ window.onload = function(){
 
     document.addEventListener('keydown',keyPressed);
     document.addEventListener('keyup',keyReleased);
+    
     setInterval(updateAll,1000/60);
 }
 
@@ -43,8 +26,8 @@ let bulletYSpeed = 10;
 let targetXPos = 0;
 let targetYPos = 0;
 const TARGET_SIZE = 20;
-let targetXSpeed = 3;
-let targetYSpeed = 3;
+let targetXSpeed = 1;
+let targetYSpeed = 1;
 
 let settingUp = true;
 
@@ -54,7 +37,7 @@ function updateAll(){
     colorRect(bulletXPos,bulletYPos,BULLET_WIDTH,BULLET_HEIGHT,'red');
     colorRect(targetXPos,targetYPos,TARGET_SIZE,TARGET_SIZE,'blue');
 
-    if(settingUp){
+    if(settingUp ){
         setUp();
         settingUp = false;
     }
@@ -107,21 +90,26 @@ function bulletShoot(){
     if(shooting && shot){
         bulletYPos -= bulletYSpeed;
     }
-    if(bulletYPos < O || bulletXPos + BULLET_WIDTH > targetXPos && bulletXPos < targetXPos + TARGET_SIZE && bulletYPos + BULLET_HEIGHT > targetYPos && bulletYPos < targetYPos + TARGET_SIZE){
+    if(bulletYPos < 0 || bulletXPos + BULLET_WIDTH > targetXPos && bulletXPos < targetXPos + TARGET_SIZE && bulletYPos + BULLET_HEIGHT > targetYPos && bulletYPos < targetYPos + TARGET_SIZE){
+        console.log("BOUM");
         shot = false;
         shooting = false;
+        targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
+        targetYPos = Math.floor(Math.random() * (canvas.height/2));
     }
     if(shot == false && shooting == false){
         bulletXPos = 0 - BULLET_WIDTH;
         bulletYPos = 0;
+        
     }
+    
 }
+
 
 function setUp(){
     gunXPos = canvas.width / 2 - GUN_SIZE / 2;
-
-    targetXPos = canvas.width / 2 - TARGET_SIZE / 2;
-    targetYPos = TARGET_SIZE * 2;
+    targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
+    targetYPos = Math.floor(Math.random() * (canvas.height/2));
     
 }
 
@@ -134,13 +122,5 @@ function moveGun(){
     }
 }
 
-function moveTarget(){
-    targetYPos += targetYSpeed;
 
-    if(targetYSpeed > canvas.height){
-        targetYPos = 0 - TARGET_SIZE;
-        targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
-        targetYSpeed = Math.floor(Math.random() * (12 - 4) + 4);
-    }
-}
 
