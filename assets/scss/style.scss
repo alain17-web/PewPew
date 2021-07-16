@@ -8,7 +8,7 @@ h1{
 }
 
 #score {
-    margin: 4rem 2rem 4rem 65rem;
+    margin: 2rem 2rem 3rem 65rem;
     width: 10%;
     border: 3px solid purple;
     border-radius: 35%;
@@ -36,11 +36,27 @@ canvas{
 }
 
 #shots {
-    margin-top: 3rem;
+    margin-top: 1rem;
     text-align: center;
     font-size: 1.5rem;
     color: darkorchid;
 }
+
+.button{
+    margin-left: 20rem;
+    width: 10%;
+
+    .reset{
+        text-align: center;
+        padding: 10px;
+        font-size: 1.2rem;
+        background: green;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+
 
 
 

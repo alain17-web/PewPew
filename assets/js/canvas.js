@@ -41,7 +41,16 @@ function updateAll(){
     colorRect(gunXPos,GUN_Y_POS,GUN_SIZE,GUN_SIZE,'green');
     colorRect(bulletXPos,bulletYPos,BULLET_WIDTH,BULLET_HEIGHT,'red');
     colorRect(targetXPos,targetYPos,TARGET_SIZE,TARGET_SIZE,'blue');
-    
+    drawStar(100,100,5,30,15);
+    drawStar(250,150,5,30,15);
+    drawStar(650,80,5,30,15);
+    drawStar(450,100,5,30,15);
+    drawStar(120,300,5,30,15);
+    drawStar(550,330,5,30,15);
+    drawStar(700,450,5,30,15);
+    drawStar(450,450,5,30,15);
+    drawStar(150,500,5,30,15);
+    drawStar(550,550,5,30,15);
 
     if(settingUp ){
         setUp();
@@ -151,7 +160,35 @@ function endGame(){
     }
 }
 
+function reset() {
+  location.reload();
+}
 
+function drawStar(cx,cy,spikes,outerRadius,innerRadius){
+    var rot=Math.PI/2*3;
+    var x=cx;
+    var y=cy;
+    var step=Math.PI/spikes;
 
+    ctx.beginPath();
+    ctx.moveTo(cx,cy-outerRadius)
+    for(i=0;i<spikes;i++){
+      x=cx+Math.cos(rot)*outerRadius;
+      y=cy+Math.sin(rot)*outerRadius;
+      ctx.lineTo(x,y)
+      rot+=step
 
+      x=cx+Math.cos(rot)*innerRadius;
+      y=cy+Math.sin(rot)*innerRadius;
+      ctx.lineTo(x,y)
+      rot+=step
+    }
+    ctx.lineTo(cx,cy-outerRadius);
+    ctx.closePath();
+    ctx.lineWidth=5;
+    ctx.strokeStyle='yellow';
+    ctx.stroke();
+    ctx.fillStyle='yellow';
+    ctx.fill();
 
+}
