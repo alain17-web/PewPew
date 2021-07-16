@@ -8,7 +8,9 @@ window.onload = function(){
     document.addEventListener('keydown',keyPressed);
     document.addEventListener('keyup',keyReleased);
 
+    
     setInterval(updateAll,1000/60);
+    
 }
 
 let gunXPos = 0;
@@ -26,7 +28,7 @@ let bulletYSpeed = 10;
 
 let targetXPos = 0;
 let targetYPos = 0;
-const TARGET_SIZE = 20;
+const TARGET_SIZE = 15;
 let targetXSpeed = 1;
 let targetYSpeed = 1;
 
@@ -40,7 +42,7 @@ function updateAll(){
     colorRect(0,0,canvas.width,canvas.height,'black');
     colorRect(gunXPos,GUN_Y_POS,GUN_SIZE,GUN_SIZE,'green');
     colorRect(bulletXPos,bulletYPos,BULLET_WIDTH,BULLET_HEIGHT,'red');
-    colorRect(targetXPos,targetYPos,TARGET_SIZE,TARGET_SIZE,'blue');
+    //colorRect(targetXPos,targetYPos,TARGET_SIZE,TARGET_SIZE,'blue');
     drawStar(100,100,5,30,15);
     drawStar(250,150,5,30,15);
     drawStar(650,80,5,30,15);
@@ -51,6 +53,7 @@ function updateAll(){
     drawStar(450,450,5,30,15);
     drawStar(150,500,5,30,15);
     drawStar(550,550,5,30,15);
+    drawTarget(targetXPos,targetYPos,TARGET_SIZE,TARGET_SIZE,'blue');
 
     if(settingUp ){
         setUp();
@@ -191,4 +194,12 @@ function drawStar(cx,cy,spikes,outerRadius,innerRadius){
     ctx.fillStyle='yellow';
     ctx.fill();
 
+}
+
+function drawTarget(){
+    ctx.beginPath();
+    ctx.arc(targetXPos, targetYPos, TARGET_SIZE, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle='blue';
+    ctx.fill();
 }
