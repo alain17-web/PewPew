@@ -13,4 +13,11 @@ canvas {
   margin-bottom: 1rem;
   display: block;
 }
+
+#score {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: darkorchid;
+}
 /*# sourceMappingURL=style.css.map */

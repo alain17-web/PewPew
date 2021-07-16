@@ -31,6 +31,9 @@ let targetYSpeed = 1;
 
 let settingUp = true;
 
+let shotsCounter = 0;
+let hitCounter = 0;
+
 function updateAll(){
     colorRect(0,0,canvas.width,canvas.height,'black');
     colorRect(gunXPos,GUN_Y_POS,GUN_SIZE,GUN_SIZE,'green');
@@ -91,12 +94,23 @@ function bulletShoot(){
         bulletYPos -= bulletYSpeed;
     }
     if(bulletYPos < 0 || bulletXPos + BULLET_WIDTH > targetXPos && bulletXPos < targetXPos + TARGET_SIZE && bulletYPos + BULLET_HEIGHT > targetYPos && bulletYPos < targetYPos + TARGET_SIZE){
-        console.log("BOUM");
+        
+        shotsCounter += 1;
+        document.getElementById('count').innerHTML = shotsCounter;
+        //targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
+        //targetYPos = Math.floor(Math.random() * (canvas.height/2));
         shot = false;
         shooting = false;
+    }
+    if(bulletXPos + BULLET_WIDTH > targetXPos && bulletXPos < targetXPos + TARGET_SIZE && bulletYPos + BULLET_HEIGHT > targetYPos && bulletYPos < targetYPos + TARGET_SIZE){
+       
+        hitCounter += 1;
+        document.getElementById('hit').innerHTML = hitCounter;
+
         targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
         targetYPos = Math.floor(Math.random() * (canvas.height/2));
     }
+
     if(shot == false && shooting == false){
         bulletXPos = 0 - BULLET_WIDTH;
         bulletYPos = 0;
@@ -121,6 +135,8 @@ function moveGun(){
         gunXPos += gunXSpeed;
     }
 }
+
+
 
 
 
