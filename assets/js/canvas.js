@@ -3,10 +3,11 @@ let canvas,ctx;
 window.onload = function(){
     canvas = document.getElementById("gameCanvas");
     ctx = canvas.getContext("2d");
+   
 
     document.addEventListener('keydown',keyPressed);
     document.addEventListener('keyup',keyReleased);
-    
+
     setInterval(updateAll,1000/60);
 }
 
@@ -33,12 +34,14 @@ let settingUp = true;
 
 let shotsCounter = 0;
 let hitCounter = 0;
+let points = 0;
 
 function updateAll(){
     colorRect(0,0,canvas.width,canvas.height,'black');
     colorRect(gunXPos,GUN_Y_POS,GUN_SIZE,GUN_SIZE,'green');
     colorRect(bulletXPos,bulletYPos,BULLET_WIDTH,BULLET_HEIGHT,'red');
     colorRect(targetXPos,targetYPos,TARGET_SIZE,TARGET_SIZE,'blue');
+    
 
     if(settingUp ){
         setUp();
@@ -47,6 +50,7 @@ function updateAll(){
 
     moveGun();
     bulletShoot();
+    endGame();
 }
 
 function colorRect(topLeftX,topLeftY,boxWidth,boxHeight,colorFill){
@@ -97,8 +101,7 @@ function bulletShoot(){
         
         shotsCounter += 1;
         document.getElementById('count').innerHTML = shotsCounter;
-        //targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
-        //targetYPos = Math.floor(Math.random() * (canvas.height/2));
+
         shot = false;
         shooting = false;
     }
@@ -106,6 +109,12 @@ function bulletShoot(){
        
         hitCounter += 1;
         document.getElementById('hit').innerHTML = hitCounter;
+
+        points += 100;
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem("points", points);
+            document.getElementById("pts").innerHTML = localStorage.getItem("points");
+        }
 
         targetXPos = Math.floor(Math.random() * (canvas.width - TARGET_SIZE));
         targetYPos = Math.floor(Math.random() * (canvas.height/2));
@@ -133,6 +142,12 @@ function moveGun(){
     }
     if(rightKeyPress){
         gunXPos += gunXSpeed;
+    }
+}
+
+function endGame(){
+    if(hitCounter == 10){
+        document.getElementById("end").innerHTML = "GAME OVER !";
     }
 }
 

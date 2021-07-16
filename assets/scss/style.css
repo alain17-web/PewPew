@@ -7,6 +7,18 @@ h1 {
   text-align: center;
 }
 
+#score {
+  margin: 4rem 2rem 4rem 65rem;
+  width: 10%;
+  border: 3px solid purple;
+  border-radius: 35%;
+  padding: 10px;
+  text-align: center;
+  color: purple;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 canvas {
   padding: 0;
   margin: 0 auto;
@@ -14,7 +26,14 @@ canvas {
   display: block;
 }
 
-#score {
+#end {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: orangered;
+  text-align: center;
+}
+
+#shots {
   margin-top: 3rem;
   text-align: center;
   font-size: 1.5rem;

@@ -12,13 +12,19 @@
         <h1>Pew Pew</h1>
     </head>
     <main>
+        <div id="score">
+            <p><span id="pts">0</span> points</p>
+        </div>
         <div id="gameContainer">
             <canvas
             id="gameCanvas"
             width="800"
             height="600"></canvas>
         </div>
-        <div id="score">
+        <div id="end">
+            <p></p>
+        </div>
+        <div id="shots">
             <p>You have shot <span id="count">0</span> times</p>
             <p><span id="hit">0</span> targets hit !</p>
         </div>
