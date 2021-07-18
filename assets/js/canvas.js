@@ -1,15 +1,17 @@
-let canvas,ctx;
+let canvas,ctx,freeze;
 
 
 //Start the game
 window.onload = function(){
     canvas = document.getElementById("gameCanvas");
     ctx = canvas.getContext("2d");
-   
+    freeze = false;
+
     //shoot and move onclick
+    if(freeze == false){
     document.addEventListener('keydown',keyPressed);
     document.addEventListener('keyup',keyReleased);
-
+    }
     
     setInterval(updateAll,1000/60);
     
@@ -221,10 +223,12 @@ function moveGun(){
     }
 }
 
-//function to display GAME OVER when 10 targets have been hit
+//function to display GAME OVER and freeze game when 10 targets have been hit
 function endGame(){
     if(hitCounter == 10){
         document.getElementById("end").innerHTML = "GAME OVER !";
+        gunXPos = canvas.width / 2 - GUN_SIZE / 2;
+        freeze = true;
     }
 }
 
